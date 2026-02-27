@@ -4253,7 +4253,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <h3>Sustained Cases - 2025 Quarterly Trend</h3>
 <p>Tracking sustained allegations across all four quarters of 2025:</p>
 <div>
-<div class="chart-container-print" style="position: relative; height: 280px; margin: 10px 0; background: #ffffff; border-radius: 4px; page-break-inside: avoid; break-inside: avoid;">
+<div class="chart-container-print" style="position: relative; height: 340px; margin: 10px 0; background: #ffffff; border-radius: 4px; page-break-inside: avoid; break-inside: avoid;">
 <canvas aria-label="Line chart: Sustained Cases by Quarter 2025. Q1: 6 cases, Q2: 15 cases (peak), Q3: 8 cases, Q4: 6 cases. Annual total: 35 sustained cases with a 3.7% overall sustained rate." id="sustainedCasesTrendChart" role="img"></canvas>
 </div>
 </div>
@@ -4667,9 +4667,9 @@ Note: 2025 data includes all four quarters (Q1-Q4).
             clip: false,
             layout: {
               padding: {
-                top: 30,
-                right: 15,
-                left: 30,
+                top: 40,
+                right: 60,
+                left: 60,
                 bottom: 10
               }
             },
@@ -4680,7 +4680,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
                 font: { weight: 'bold', size: 12 },
                 align: 'top',
                 anchor: 'end',
-                offset: 6,
+                offset: 8,
                 formatter: (value, context) => {
                   return context.datasetIndex === 0 && value ? value + ' days' : '';
                 }
@@ -4689,7 +4689,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
             scales: {
               y: {
                 beginAtZero: true,
-                max: 200,
+                max: 220,
                 title: { display: true, text: 'Days', font: { size: 14, weight: 'bold' }}
               }
             }
@@ -4723,9 +4723,9 @@ Note: 2025 data includes all four quarters (Q1-Q4).
             clip: false,
             layout: {
               padding: {
-                top: 35,
-                right: 20,
-                left: 20,
+                top: 40,
+                right: 60,
+                left: 60,
                 bottom: 10
               }
             },
@@ -4736,14 +4736,14 @@ Note: 2025 data includes all four quarters (Q1-Q4).
                 font: { weight: 'bold', size: 14 },
                 align: 'top',
                 anchor: 'end',
-                offset: 6,
+                offset: 8,
                 formatter: (value) => value !== null ? value + ' cases' : ''
               }
             },
             scales: {
               y: {
                 beginAtZero: true,
-                max: 20,
+                max: 25,
                 title: { display: true, text: 'Number of Sustained Cases', font: { size: 14, weight: 'bold' }}
               }
             }
