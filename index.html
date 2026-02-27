@@ -452,14 +452,8 @@
       height: 100%;
       background-color: var(--sf-blue);
       transition: width 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      padding-right: 8px;
-      color: white;
-      font-weight: 600;
-      font-size: 0.8rem;
-      min-width: 50px;
+      border-radius: 3px;
+      min-width: 4px;
     }
     
     .bar-fill.secondary {
@@ -471,11 +465,12 @@
     }
     
     .bar-value {
-      min-width: 60px;
-      text-align: right;
+      min-width: 110px;
+      text-align: left;
       padding-left: 10px;
       font-weight: 600;
       color: var(--sf-navy);
+      white-space: nowrap;
     }
     
     /* Print-friendly chart alternative using ASCII/text bars */
@@ -900,13 +895,13 @@
       
       /* Executive summary text - MATCH BODY FONT for readability */
       .executive-summary h2 {
-        font-size: 1.8rem !important; /* Match section h2 */
-        margin: 0 0 15pt 0 !important;
+        font-size: 11pt !important;
+        margin: 0 0 6pt 0 !important;
       }
       
       .executive-summary h3 {
-        font-size: 1.4rem !important; /* Match section h3 */
-        margin: 10pt 0 8pt 0 !important;
+        font-size: 9pt !important;
+        margin: 4pt 0 3pt 0 !important;
       }
       
       .executive-summary p {
@@ -974,18 +969,31 @@
       /* Ensure chart bars don't overflow */
       .chart-bar {
         max-width: 100% !important;
-        margin-bottom: 6pt !important;
-        overflow: hidden !important;
+        margin-bottom: 4pt !important;
+        overflow: visible !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 18pt !important;
       }
       
       .bar-label {
-        min-width: 100pt !important;
-        font-size: 8pt !important;
+        min-width: 80pt !important;
+        max-width: 80pt !important;
+        font-size: 7pt !important;
+        padding-right: 4pt !important;
+      }
+      
+      .bar-container {
+        flex-grow: 1 !important;
+        height: 14pt !important;
       }
       
       .bar-value {
-        min-width: 35pt !important;
-        font-size: 8pt !important;
+        min-width: 65pt !important;
+        max-width: 75pt !important;
+        font-size: 7pt !important;
+        padding-left: 4pt !important;
+        white-space: nowrap !important;
       }
       
       .chart-title {
@@ -1020,9 +1028,9 @@
         display: block !important;
         width: 100% !important;
         max-width: 100% !important;
-        height: 200px !important;
-        min-height: 150px !important;
-        max-height: 220px !important;
+        height: 180px !important;
+        min-height: 130px !important;
+        max-height: 200px !important;
         page-break-inside: avoid !important;
         break-inside: avoid !important;
         margin: 4pt 0 !important;
@@ -1056,9 +1064,23 @@
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
         page-break-inside: auto !important;
+        break-inside: auto !important;
         border: 1px solid #666 !important;
-        padding: 8pt !important;
-        margin: 6pt 0 !important;
+        padding: 6pt !important;
+        margin: 4pt 0 !important;
+      }
+      
+      .callout-danger h4,
+      .callout-success h4 {
+        font-size: 9pt !important;
+        margin: 0 0 3pt 0 !important;
+      }
+      
+      .callout-danger p,
+      .callout-success p {
+        font-size: 8.5pt !important;
+        line-height: 1.35 !important;
+        margin: 2pt 0 !important;
       }
       
       /* Hide placeholder boxes in print - fully collapse */
@@ -1099,6 +1121,8 @@
         overflow: visible !important;
         overflow-x: visible !important;
         width: 100% !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
       }
 
       /* Scale down the findings table columns to fit the print page */
@@ -1137,8 +1161,8 @@
         margin: 4pt 0 !important;
         padding: 0 !important;
         box-sizing: border-box !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
       }
       
       .data-table {
@@ -1225,7 +1249,8 @@
         font-style: italic !important;
         color: #444 !important;
         margin-bottom: 3pt !important;
-        caption-side: top !important;
+        caption-side: bottom !important;
+        padding-top: 3pt !important;
       }
 
       /* 7. FOOTER */
@@ -1400,9 +1425,31 @@
       .section h3 {
         page-break-after: avoid !important;
         break-after: avoid !important;
-        margin-top: 15pt !important;
-        margin-bottom: 8pt !important;
         color: #000 !important;
+      }
+      
+      /* Global heading sizes for print - catches headings outside .section */
+      h2 {
+        font-size: 11pt !important;
+        margin: 6pt 0 4pt 0 !important;
+      }
+      
+      h3 {
+        font-size: 9pt !important;
+        margin: 4pt 0 3pt 0 !important;
+      }
+      
+      h4 {
+        font-size: 8.5pt !important;
+        margin: 3pt 0 2pt 0 !important;
+      }
+      
+      /* 11. SECTION PARAGRAPH TEXT */
+      .section > p,
+      .section > div > p {
+        font-size: 9pt !important;
+        line-height: 1.4 !important;
+        margin: 3pt 0 !important;
       }
       
       /* 12. ENSURE PROPER LINE SPACING */
@@ -1438,19 +1485,19 @@
       /* Trend analysis boxes */
       .simple-chart {
         page-break-before: auto !important;
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
         page-break-after: auto !important;
-        border: 2pt solid black !important;
-        padding: 15pt !important;
-        margin: 15pt 0 !important;
+        border: 1pt solid #666 !important;
+        padding: 6pt !important;
+        margin: 6pt 0 !important;
         background: white !important;
       }
       
       .chart-title {
-        font-size: 12pt !important;
+        font-size: 9pt !important;
         font-weight: bold !important;
-        margin-bottom: 8pt !important;
+        margin-bottom: 4pt !important;
         color: black !important;
         text-align: center !important;
       }
@@ -1458,8 +1505,8 @@
       /* Dividers */
       hr {
         border: none !important;
-        border-top: 2pt solid black !important;
-        margin: 15pt 0 !important;
+        border-top: 1pt solid #666 !important;
+        margin: 6pt 0 !important;
         page-break-after: avoid !important;
       }
       
@@ -1543,7 +1590,7 @@
       border: 3px solid var(--sf-blue);
       padding: 30px;
       border-radius: 10px;
-      margin: 20px 0;
+      margin: 10px 0;
     }
     .annual-overview-box h3 {
       margin-top: 0;
@@ -1555,7 +1602,7 @@
       background: #f8d7da;
       border-left: 4px solid #dc3545;
       padding: 20px;
-      margin: 20px 0;
+      margin: 10px 0;
       border-radius: 4px;
     }
     .callout-danger h4 {
@@ -1566,7 +1613,7 @@
       background: #d4edda;
       border-left: 4px solid #28a745;
       padding: 20px;
-      margin: 20px 0;
+      margin: 10px 0;
       border-radius: 4px;
       page-break-inside: avoid;
       break-inside: avoid;
@@ -1588,7 +1635,8 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 15px;
-      margin-top: 25px;
+      margin-top: 40px;
+      clear: both;
     }
     .year-total-card {
       background: var(--sf-bg-light);
@@ -1956,12 +2004,6 @@
         background: #fff5f5;
       }
 
-      /* Proper Conduct row cells — light green tint */
-      .findings-table tr:has(#proper) td,
-      .findings-table tr:nth-child(2) td {
-        background: #f0faf0;
-      }
-
       /* Total row cells */
       .findings-table tr:last-child td {
         background: #eef2f7;
@@ -1981,7 +2023,7 @@
       position: relative;
       width: 100%;
       height: 450px;
-      margin-bottom: 25px;
+      margin-bottom: 10px;
       
     }
     
@@ -2033,7 +2075,7 @@
       width: 100%;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
-      margin: 20px 0;
+      margin: 10px 0;
     }
     
     .data-table.findings-table {
@@ -2275,28 +2317,28 @@
       .chart-container-print[style*="height: 340px"],
       .chart-container-print[style*="height: 320px"],
       .chart-container-print[style*="height: 280px"] {
-        height: 200px !important;
-        max-height: 220px !important;
+        height: 180px !important;
+        max-height: 200px !important;
         margin: 4pt 0 !important;
         overflow: visible !important;
       }
       
       /* Annual allegations bar chart needs extra height for rotated x-axis labels */
       #annualAllegationsChart {
-        height: 240px !important;
+        height: 200px !important;
       }
       
       .chart-container-print:has(#annualAllegationsChart) {
-        height: 240px !important;
-        max-height: 260px !important;
-        margin-bottom: 6pt !important;
+        height: 210px !important;
+        max-height: 230px !important;
+        margin-bottom: 4pt !important;
       }
       
       /* All chart containers: no overflow clipping in print */
       .chart-container-print {
         overflow: visible !important;
-        height: 200px !important;
-        max-height: 220px !important;
+        height: 180px !important;
+        max-height: 200px !important;
       }
 
       /* Safety: ensure findings table always renders as a table in print,
@@ -2325,6 +2367,8 @@
         overflow: visible !important;
         overflow-x: visible !important;
         width: 100% !important;
+        page-break-inside: auto !important;
+        break-inside: auto !important;
       }
 
       /* ALL table captions: small, italic, subordinate to table */
@@ -2362,6 +2406,103 @@
       h3 + p + .chart-container-print {
         page-break-before: auto !important;
       }
+
+      /* 3304 Compliance Section - clean print styling */
+      div[style*="#d4edda"][style*="border-left"] {
+        background-color: #f5f5f5 !important;
+        border: 1px solid #666 !important;
+        border-left: 3pt solid #28a745 !important;
+        padding: 8pt !important;
+        margin: 6pt 0 !important;
+        page-break-inside: avoid !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      /* Bar chart external labels - ensure visible in print */
+      .bar-value strong {
+        font-size: 7pt !important;
+      }
+
+      .bar-value span {
+        font-size: 6pt !important;
+      }
+
+      /* Placeholder boxes hidden in print */
+      .placeholder-box {
+        display: none !important;
+      }
+
+      /* Year total cards (785, 737, 899, 807) - compact for print */
+      .year-total-card {
+        padding: 4pt !important;
+        border: 1pt solid #666 !important;
+        border-radius: 3pt !important;
+        text-align: center !important;
+      }
+
+      .year-total-card .total-number {
+        font-size: 12pt !important;
+        line-height: 1.2 !important;
+        margin: 0 !important;
+      }
+
+      .year-total-card .total-label {
+        font-size: 7pt !important;
+        line-height: 1.1 !important;
+        margin: 0 !important;
+      }
+
+      .year-total-card.accent {
+        background-color: #f0f0f0 !important;
+        border-color: #666 !important;
+      }
+
+      .year-total-card.accent .total-number {
+        font-size: 12pt !important;
+        color: #000 !important;
+      }
+      
+      .year-totals-grid {
+        display: none !important;
+      }
+      
+      /* Sustained cases detail table - compact */
+      .data-table.sustained-table,
+      .wide-table-container .data-table {
+        font-size: 7.5pt !important;
+      }
+      
+      .wide-table-container .data-table th,
+      .wide-table-container .data-table td {
+        padding: 3pt 2pt !important;
+        font-size: 7.5pt !important;
+      }
+      
+      /* Keep table header with at least 2 rows */
+      .data-table thead {
+        display: table-header-group !important;
+      }
+      
+      .data-table thead + tbody tr:first-child {
+        page-break-before: avoid !important;
+      }
+
+      /* Highlight box text - ensure readable but compact */
+      .highlight-box p,
+      .SFPD-highlight p,
+      .SFSO-highlight p {
+        font-size: 8pt !important;
+        line-height: 1.35 !important;
+        margin: 2pt 0 !important;
+      }
+
+      .highlight-box h3,
+      .SFPD-highlight h3,
+      .SFSO-highlight h3 {
+        font-size: 8.5pt !important;
+        margin: 0 0 3pt 0 !important;
+      }
     }
     
      </style>
@@ -2383,14 +2524,14 @@
 <!-- ============================================ -->
 <section class="section">
 <h2 style="color: #1a1a2e;">2025 Annual Executive Summary</h2>
-<p class="annual-exec-intro" style="font-size: 1.15em; line-height: 1.9; margin: 20px 0 25px 0; color: var(--sf-navy);">
+<p class="annual-exec-intro" style="font-size: 1.15em; line-height: 1.9; margin: 10px 0; color: var(--sf-navy);">
           In 2025, the San Francisco Department of Police Accountability received <strong>899 complaints</strong> — a 22% increase over 2024 — while simultaneously reducing average case processing time from 116 days to <strong>93 days</strong>, well below the 180-day department target, and meeting the statutory Government Code 3304 one-year deadline 100% of the time. Of 2,012 allegations investigated, the DPA sustained findings in <strong>35 cases</strong>, with body-worn camera compliance violations accounting for the majority of sustained allegations. These results reflect both growing community engagement with the accountability process and meaningful operational improvements by the DPA.
         </p>
 <div class="annual-exec-summary-block">
 <div class="annual-overview-box">
 <h3 style="margin-top: 0; color: var(--sf-navy);">Full Year 2025 Overview</h3>
 <!-- Annual Stats Grid -->
-<div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin: 25px 0;">
+<div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); margin: 10px 0;">
 <div class="stat-card navy">
 <span class="stat-number" style="color: #ffffff;">899</span>
 <div class="stat-label" style="color: #ffffff;">Total Complaints</div>
@@ -2422,7 +2563,7 @@
 <div class="stat-context" style="color: #D6E4EE;">vs. 2024</div>
 </div>
 </div>
-<h4 style="color: var(--sf-navy); margin-top: 25px;">2025 Key Achievements</h4>
+<h4 style="color: var(--sf-navy); margin-top: 10px;">2025 Key Achievements</h4>
 <ul style="line-height: 2;">
 <li><strong>Processing Efficiency:</strong> Reduced average processing time from 116 days (Q4 2024) to 93 days annual average (19.8% improvement)</li>
 <li><strong>Fastest Quarter:</strong> Q4 2025 achieved the fastest average processing time of the year at 85 days, 52.8% below the 180-day department target</li>
@@ -2627,7 +2768,7 @@
 <h3>2025 Annual Allegations by Category</h3>
 <p>Distribution of all allegations investigated by the DPA in 2025, categorized by type:</p>
 <div>
-<div class="chart-container-print" style="position: relative; height: 340px; margin: 30px 0 20px 0; padding-top: 40px; page-break-inside: avoid; break-inside: avoid;">
+<div class="chart-container-print" style="position: relative; height: 340px; margin: 10px 0; page-break-inside: avoid; break-inside: avoid;">
 <canvas aria-describedby="annual-allegations-table" aria-label="Bar chart: 2025 Annual Allegations by Category. Conduct Unbecoming: 421, Neglect of Duty: 808 (largest), Policy/Procedure: 6, Unwarranted Action: 333, Use of Force: 160, Informational: 76, Referral/Other: 208. Total: 2,012 allegations. Data table follows." id="annualAllegationsChart" role="img"></canvas>
 </div>
 </div>
@@ -2949,14 +3090,14 @@
 <strong>Trend Analysis:</strong> Q4 2025 shows 191 complaints, representing a 1.5% decrease from Q4 2024 (194 complaints) and a 7.3% decrease from Q4 2023 (206 complaints). This Q4 comparison across three years shows the highest Q4 volume occurred in 2023. 
         </div>
 <!-- NEW: Quarterly Stacked Chart - 3 Year Trend -->
-<div class="simple-chart" style="padding: 20px; margin-top: 20px;">
-<div class="chart-title" style="font-size: 1.2rem; margin-bottom: 20px;">
+<div class="simple-chart">
+<div class="chart-title">
 <span class="dept-badge SFPD">SFPD</span> Quarterly Trends - 3-Year Comparison (2023-2025)
           </div>
-<p style="text-align: center; color: #595959; margin-bottom: 25px; font-size: 0.85rem;">
+<p style="text-align: center; color: #595959;">
             Stacked view of quarterly complaint volumes across three years showing seasonal patterns and year-over-year growth
           </p>
-<div class="chart-container-print" style="position: relative; height: 320px; margin-bottom: 25px; page-break-inside: avoid; break-inside: avoid;">
+<div class="chart-container-print" style="position: relative; height: 420px; margin-bottom: 25px; page-break-inside: avoid; break-inside: avoid; overflow: hidden; background: white; z-index: 1;">
 <canvas aria-describedby="quarterly-trends-table" aria-label="Stacked bar chart: SFPD Quarterly Complaints 2023–2025. 2023: Q1 191, Q2 188, Q3 200, Q4 206, Total 785. 2024: Q1 164, Q2 204, Q3 175, Q4 194, Total 737. 2025: Q1 228, Q2 233, Q3 247, Q4 191, Total 899. Data table follows." id="quarterlyStackedChart" role="img"></canvas>
 </div>
 <div class="print-chart notranslate">
@@ -3002,8 +3143,8 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <div class="print-only-notice" style="display: none; background: #f5f5f5; border: 2px solid #333; padding: 15px; margin: 15px 0; text-align: center;">
 <strong>Note for Printed Documents:</strong> A text-based chart is visible above. If the interactive chart does not display, refer to the text chart or data table below for complete quarterly breakdown.
           </div>
-<table class="data-table" id="quarterly-trends-table" style="margin-top: 25px; font-size: 0.9rem;">
-<caption>SFPD complaint trends by quarter: 2023-2025 showing quarterly and annual totals</caption>
+<table class="data-table" id="quarterly-trends-table" style="margin-top: 20px;">
+<caption style="caption-side: bottom; font-style: italic; font-size: 0.85em; color: #666; padding-top: 6px;">SFPD complaint trends by quarter: 2023-2025 showing quarterly and annual totals</caption>
 <thead>
 <tr>
 <th scope="col">Quarter</th>
@@ -3213,7 +3354,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 </section>
 <section class="section">
 <h2>Complainant Demographics</h2>
-<div class="highlight-box">
+<div class="highlight-box" style="page-break-inside: avoid; break-inside: avoid;">
 <h3>Identified vs. Anonymous Complaints - Combined</h3>
 <p>Of the <strong>198 complaints</strong> received across both departments, <strong>172 (86.9%)</strong> were filed by identified complainants, while <strong>26 (13.1%)</strong> were submitted anonymously. <span class="dept-badge SFPD">SFPD</span>: 165 identified (86.4%), 26 anonymous (13.6%). <span class="dept-badge SFSO">SFSO</span>: 7 identified (100%), 0 anonymous (0%). This demonstrates strong community willingness to engage with the accountability process across both departments.</p>
 </div>
@@ -3330,7 +3471,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 </section>
 <section class="section">
 <h2>SFPD Allegation Types and Investigation Outcomes</h2>
-<div class="SFPD-highlight">
+<div class="SFPD-highlight" style="page-break-inside: avoid; break-inside: avoid;">
 <h3><span class="dept-badge SFPD">SFPD</span> SFPD Processing Time Achievement</h3>
 <p><strong>Performance:</strong> The DPA achieved an average SFPD case processing time of <strong>85 days</strong> in Q4 2025, significantly under the 180-day department target. This represents a 52.8% improvement over the target. The DPA maintained <strong>100% compliance</strong> with the Government Code 3304 one-year deadline for completing investigations.</p>
 <p style="font-size: 0.9em; color: #555; margin-top: 8px; font-style: italic;"><strong>Note:</strong> Processing time is measured from the date a case is received by the DPA until the date the investigator submits the case for closure.</p>
@@ -3343,51 +3484,51 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <div class="chart-bar">
 <div class="bar-label">Neglect of Duty</div>
 <div class="bar-container">
-<div class="bar-fill" data-value="38.6%" style="width: 38.6%;"><span class="notranslate">38.6%</span></div>
+<div class="bar-fill" data-value="38.6%" style="width: 80%;"></div>
 </div>
-<div class="bar-value notranslate">185</div>
+<div class="bar-value notranslate"><strong>185</strong> <span style="font-size:0.85em;color:#666;">(38.6%)</span></div>
 </div>
 <div class="chart-bar">
 <div class="bar-label">Conduct Unbecoming</div>
 <div class="bar-container">
-<div class="bar-fill" data-value="24.0%" style="width: 24%;"><span class="notranslate">24.0%</span></div>
+<div class="bar-fill" data-value="24.0%" style="width: 49.7%;"></div>
 </div>
-<div class="bar-value notranslate">115</div>
+<div class="bar-value notranslate"><strong>115</strong> <span style="font-size:0.85em;color:#666;">(24.0%)</span></div>
 </div>
 <div class="chart-bar">
 <div class="bar-label">Unwarranted Action</div>
 <div class="bar-container">
-<div class="bar-fill" data-value="14.8%" style="width: 14.8%;"><span class="notranslate">14.8%</span></div>
+<div class="bar-fill" data-value="14.8%" style="width: 30.7%;"></div>
 </div>
-<div class="bar-value notranslate">71</div>
-</div>
-<div class="chart-bar">
-<div class="bar-label">Unnecessary Force</div>
-<div class="bar-container">
-<div class="bar-fill" data-value="7.5%" style="width: 6.5%;"><span class="notranslate">7.5%</span></div>
-</div>
-<div class="bar-value notranslate">36</div>
+<div class="bar-value notranslate"><strong>71</strong> <span style="font-size:0.85em;color:#666;">(14.8%)</span></div>
 </div>
 <div class="chart-bar">
 <div class="bar-label">Referral</div>
 <div class="bar-container">
-<div class="bar-fill" data-value="10.6%" style="width: 10.6%;"><span class="notranslate">10.6%</span></div>
+<div class="bar-fill" data-value="10.6%" style="width: 22.1%;"></div>
 </div>
-<div class="bar-value notranslate">51</div>
+<div class="bar-value notranslate"><strong>51</strong> <span style="font-size:0.85em;color:#666;">(10.6%)</span></div>
+</div>
+<div class="chart-bar">
+<div class="bar-label">Use of Force</div>
+<div class="bar-container">
+<div class="bar-fill" data-value="7.5%" style="width: 15.6%;"></div>
+</div>
+<div class="bar-value notranslate"><strong>36</strong> <span style="font-size:0.85em;color:#666;">(7.5%)</span></div>
 </div>
 <div class="chart-bar">
 <div class="bar-label">Informational</div>
 <div class="bar-container">
-<div class="bar-fill" data-value="4.0%" style="width: 2.0%;"><span class="notranslate">4.0%</span></div>
+<div class="bar-fill" data-value="4.0%" style="width: 8.2%;"></div>
 </div>
-<div class="bar-value notranslate">19</div>
+<div class="bar-value notranslate"><strong>19</strong> <span style="font-size:0.85em;color:#666;">(4.0%)</span></div>
 </div>
 <div class="chart-bar">
 <div class="bar-label">Policy/Procedure</div>
 <div class="bar-container">
-<div class="bar-fill" data-value="0.4%" style="width: 0%;"><span class="notranslate">0.4%</span></div>
+<div class="bar-fill" data-value="0.4%" style="width: 1%;"></div>
 </div>
-<div class="bar-value notranslate">2</div>
+<div class="bar-value notranslate"><strong>2</strong> <span style="font-size:0.85em;color:#666;">(0.4%)</span></div>
 </div>
 </div>
 <div>
@@ -3647,7 +3788,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <p>During Q4 2025, the DPA sustained 11 allegations across 6 cases, meaning the investigation found sufficient evidence that misconduct occurred and violated SFPD policy. Each case summary provides context while protecting privacy.</p>
 </div>
 <div class="wide-table-container">
-<table class="data-table" style="table-layout: fixed; min-width: 700px; font-size: 0.78rem;">
+<table class="data-table" class="sustained-table" style="table-layout: fixed;">
 <caption>Sustained cases with detailed findings in Q4 2025: Six cases with misconduct findings and DPA disciplinary recommendations</caption>
 <thead>
 <tr>
@@ -3879,16 +4020,16 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <div class="chart-bar">
 <div class="bar-label">Misconduct</div>
 <div class="bar-container">
-<div class="bar-fill accent" style="width: 84.8%;">28</div>
+<div class="bar-fill accent" style="width: 84.8%;"></div>
 </div>
-<div class="bar-value">84.8%</div>
+<div class="bar-value"><strong>28</strong> <span style="font-size:0.85em;color:#666;">(84.8%)</span></div>
 </div>
 <div class="chart-bar">
 <div class="bar-label">Neglect of Duty</div>
 <div class="bar-container">
-<div class="bar-fill accent" style="width: 9.1%;">3</div>
+<div class="bar-fill accent" style="width: 9.1%;"></div>
 </div>
-<div class="bar-value">9.1%</div>
+<div class="bar-value"><strong>3</strong> <span style="font-size:0.85em;color:#666;">(9.1%)</span></div>
 </div>
 </div>
 </div>
@@ -3995,7 +4136,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <h2 style="color: #1a1a2e;">📊 2025 Annual Special Analyses</h2>
 <h3>Annual Investigation Outcomes - 2025</h3>
 <p>Distribution of how all allegations were resolved throughout 2025:</p>
-<div style="margin: 20px 0;">
+<div style="margin: 10px 0;">
 <!-- Horizontal Bar Chart - Full Width -->
 <div class="chart-container-print" style="position: relative; height: 340px; max-width: 100%; margin: 0 auto 20px auto;">
 <canvas aria-describedby="outcomes-summary-table" aria-label="Horizontal bar chart: 2025 Annual Investigation Outcomes across all allegations. Proper Conduct: 830 (41.3%), No Finding/Referral/Informational/Other: 643 (32.0%), Unfounded: 270 (13.4%), Insufficient Evidence: 158 (7.9%), Sustained: 79 (3.9%), Mediated: 18 (0.9%), Policy Failure: 14 (0.7%). Data table follows." id="investigationOutcomesPieChart" role="img"></canvas>
@@ -4079,7 +4220,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <td>Q1 2025</td>
 <td>92</td>
 <td style="color: #28a745; font-weight: bold;">-48.9% ✓</td>
-<td>”</td>
+<td>—</td>
 </tr>
 <tr>
 <td>Q2 2025</td>
@@ -4103,16 +4244,16 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 </table>
 <p style="margin-top: 15px;"><strong>Key Achievement:</strong> Q4 2025 achieved the fastest average processing time of the year at 85 days, representing a 52.8% improvement over the 180-day department target.</p>
 <!-- Processing Efficiency Trend Chart -->
-<div class="chart-container-print" style="position: relative; height: 280px; margin: 20px 0; background: #ffffff; border-radius: 4px; page-break-inside: avoid; break-inside: avoid;">
+<div class="chart-container-print" style="position: relative; height: 280px; margin: 10px 0; background: #ffffff; border-radius: 4px; page-break-inside: avoid; break-inside: avoid;">
 <canvas aria-label="Line chart: Average Case Processing Days by Quarter 2025 vs 180-day target. Q1: 92 days, Q2: 101 days, Q3: 94 days, Q4: 85 days. All quarters significantly below the 180-day department target, representing a 52.8% improvement by Q4." id="processingEfficiencyChart" role="img"></canvas>
 </div>
 </div>
 <!-- NEW: Sustained Cases Quarterly Trend -->
-<div style="page-break-inside: avoid; break-inside: avoid;">
+<div style="page-break-inside: auto; break-inside: auto;">
 <h3>Sustained Cases - 2025 Quarterly Trend</h3>
 <p>Tracking sustained allegations across all four quarters of 2025:</p>
 <div>
-<div class="chart-container-print" style="position: relative; height: 280px; margin: 20px 0; background: #ffffff; border-radius: 4px; page-break-inside: avoid; break-inside: avoid;">
+<div class="chart-container-print" style="position: relative; height: 280px; margin: 10px 0; background: #ffffff; border-radius: 4px; page-break-inside: avoid; break-inside: avoid;">
 <canvas aria-label="Line chart: Sustained Cases by Quarter 2025. Q1: 6 cases, Q2: 15 cases (peak), Q3: 8 cases, Q4: 6 cases. Annual total: 35 sustained cases with a 3.7% overall sustained rate." id="sustainedCasesTrendChart" role="img"></canvas>
 </div>
 </div>
@@ -4120,7 +4261,7 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <div>
 <h3>Mediation Program - 2025 Annual Report</h3>
 <p>The DPA's mediation program provides an alternative resolution path for appropriate complaints. Below shows the successful mediations completed each quarter:</p>
-<div class="chart-container-print" style="position: relative; height: 280px; margin: 20px 0; background: #ffffff; border-radius: 4px; page-break-inside: avoid; break-inside: avoid;">
+<div class="chart-container-print" style="position: relative; height: 280px; margin: 10px 0; background: #ffffff; border-radius: 4px; page-break-inside: avoid; break-inside: avoid;">
 <canvas aria-label="Bar chart: Successful Mediations Completed by Quarter 2025. Q1: 5, Q2: 15, Q3: 8, Q4: 7. Annual total: 35 successful mediations." id="mediationSuccessChart" role="img"></canvas>
 </div>
 </div>
@@ -4160,41 +4301,54 @@ Note: 2025 data includes all four quarters (Q1-Q4).
 <h3>Investigations Division</h3>
 <p>The Investigations Division continued to demonstrate excellence in conducting thorough, impartial investigations throughout 2025. The team successfully maintained the 100% compliance rate with Government Code 3304 one-year deadline requirements while significantly improving case processing efficiency. Investigators handled increasingly complex cases involving emerging technologies, including body-worn camera analysis and digital evidence review, while maintaining the highest standards of investigative thoroughness.</p>
 <p>Key achievements include the implementation of enhanced interview techniques, improved evidence documentation procedures, and the successful integration of new case management workflows. The division also prioritized community engagement, conducting outreach sessions to explain the investigation process and build public trust in police accountability.</p>
-<div class="placeholder-box" style="margin: 20px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
+<div class="placeholder-box" style="margin: 10px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
 <p style="margin: 0;"><strong>INFOGRAPHIC PLACEHOLDER:</strong> Investigation Process Timeline or Key Metrics</p>
 </div>
 <h3>Legal Team</h3>
 <p>The Legal Team provided critical support to the DPA's mission throughout 2025, ensuring all investigations and findings met legal standards and withstood scrutiny. The team successfully defended DPA findings in appeals and administrative proceedings, maintaining a strong track record of upholding sustained findings. Legal counsel provided guidance on complex constitutional issues, use of force standards, and evolving case law affecting police accountability.</p>
 <p>The team also played a key role in policy development, reviewing and advising on updates to investigation protocols and ensuring compliance with new legislation. Additionally, the Legal Team supported the Police Commission with legal analysis on policy recommendations and disciplinary matters, strengthening the overall accountability framework.</p>
-<div class="placeholder-box" style="margin: 20px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
+<div class="placeholder-box" style="margin: 10px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
 <p style="margin: 0;"><strong>INFOGRAPHIC PLACEHOLDER:</strong> Legal Support Metrics or Case Law Updates</p>
 </div>
 <h3>Public Records Division</h3>
 <p>The Public Records Division managed a substantial increase in California Public Records Act (CPRA) requests during 2025, reflecting heightened public interest in police accountability data. The division successfully processed requests within legal timeframes while protecting confidential information and complainant privacy. Implementation of improved tracking systems enhanced response efficiency and transparency.</p>
 <p>Beyond responding to records requests, the division contributed to the DPA's transparency initiatives by proactively publishing aggregate data, quarterly reports, and policy documents on the department website. This proactive approach reduced redundant requests and demonstrated the DPA's commitment to open government principles.</p>
-<div class="placeholder-box" style="margin: 20px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
+<div class="placeholder-box" style="margin: 10px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
 <p style="margin: 0;"><strong>INFOGRAPHIC PLACEHOLDER:</strong> CPRA Requests Volume and Response Times</p>
 </div>
 <h3>Audit Division</h3>
 <p>The Audit Division continued conducting independent, objective audits of the San Francisco Police Department (SFPD). These audits are intended to promote effectiveness, efficiency, and accountability within SFPD.</p>
 <p>In May, the DPA received its third consecutive Knighton Award from the Association of Local Government Auditors (ALGA) for its audit on the completeness and accuracy of data SFPD is required to report to the California Department of Justice under the Racial and Identity Profiling Act of 2015. ALGA judges praised the report for its thorough documentation, strong use of visuals, and well-structured presentation.</p>
 <p>In December, DPA issued a Charter-mandated audit of SFPD’s use of force. This audit evaluated the effectiveness of SFPD’s processes for monitoring use of force incidents, including supervisors’ evaluations for policy compliance and how the department uses data to inform training. DPA made 14 recommendations to strengthen SFPD’s use-of-force oversight.</p>
-<div class="placeholder-box" style="margin: 20px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
+<div class="placeholder-box" style="margin: 10px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
 <p style="margin: 0;"><strong>INFOGRAPHIC PLACEHOLDER:</strong> Audit Completion Rates or Key Findings</p>
 </div>
 <h3>Intern Program</h3>
 <p>The DPA's Intern Program continued to serve as a vital pipeline for developing future public servants and police accountability professionals. Throughout 2025, interns contributed meaningful work to investigations, policy research, and community outreach while gaining hands-on experience in government accountability. The program successfully recruited diverse candidates from local universities, enriching the DPA's work with fresh perspectives and academic research.</p>
 <p>Interns participated in substantive projects including data analysis, policy reviews, and community survey initiatives. The program's success is reflected in several former interns pursuing careers in civil rights, public interest law, and government service. The DPA expanded mentorship opportunities and professional development workshops to maximize the educational value of the internship experience.</p>
-<div class="placeholder-box" style="margin: 20px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
+<div class="placeholder-box" style="margin: 10px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
 <p style="margin: 0;"><strong>INFOGRAPHIC PLACEHOLDER:</strong> Intern Program Participation and Outcomes</p>
 </div>
 <h3>Policy Division</h3>
 <p>The Policy Division played a central role in advancing police accountability reforms through comprehensive policy analysis and development. The division reviewed SFPD policies for alignment with best practices, constitutional standards, and community expectations, providing recommendations to the Police Commission on policy updates and new regulations. Throughout 2025, the division analyzed emerging issues in law enforcement, including technology use, de-escalation techniques, and bias prevention.</p>
 <p>The Policy team collaborated with community stakeholders, civil rights organizations, and law enforcement experts to develop evidence-based policy recommendations. The division also monitored implementation of previously adopted policies and provided feedback on effectiveness and needed adjustments. This work directly contributed to strengthening San Francisco's national leadership in progressive police accountability and reform.</p>
-<div class="placeholder-box" style="margin: 20px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
+<div class="placeholder-box" style="margin: 10px 0; padding: 30px; border: 2px dashed #ccc; text-align: center; color: #666;">
 <p style="margin: 0;"><strong>INFOGRAPHIC PLACEHOLDER:</strong> Policy Reviews and Recommendations</p>
 </div>
 </section>
+<!-- ============================================ -->
+<!-- GOVERNMENT CODE 3304(d) COMPLIANCE -->
+<!-- ============================================ -->
+<section class="section">
+<h2 style="color: #1a1a2e;">Government Code Section 3304(d) Compliance</h2>
+<div style="background: #d4edda; border-left: 4px solid #28a745; padding: 20px; margin: 10px 0; border-radius: 4px;">
+  <h3 style="color: #155724; margin-top: 0;">100% Compliance with One-Year Investigation Deadline</h3>
+  <p>California Government Code Section 3304(d), part of the Public Safety Officers Procedural Bill of Rights Act (POBRA), requires that investigations of alleged officer misconduct be completed within one year of the agency's discovery of the allegation. If an investigation is not completed within this statutory timeframe, the agency is prohibited from imposing any disciplinary action against the officer, regardless of the merits of the case.</p>
+  <p>Meeting the Section 3304(d) deadline is critical to the DPA's mission. Failure to complete an investigation within the one-year window means that even cases with clear evidence of misconduct cannot result in discipline, undermining accountability and eroding public trust. Every missed deadline represents a case where an officer cannot be held accountable for substantiated misconduct.</p>
+  <p><strong>In 2025, the DPA maintained a 100% compliance rate with Government Code Section 3304(d) deadlines.</strong> Every investigation was completed within the statutory one-year period, ensuring that all sustained findings could proceed to the disciplinary process. This achievement is particularly significant given the 22% increase in complaint volume during 2025, demonstrating that the DPA's commitment to processing efficiency directly supports its ability to hold officers accountable when misconduct is found.</p>
+</div>
+</section>
+
 <!-- ============================================ -->
 <!-- CONCLUSION -->
 <!-- ============================================ -->
@@ -4332,9 +4486,9 @@ Note: 2025 data includes all four quarters (Q1-Q4).
               align: 'center'
             },
             legend: {
-              position: 'bottom',
+              position: 'top',
               labels: {
-                padding: 15,
+                padding: 10,
                 font: {
                   size: 13,
                   weight: '600'
@@ -4524,15 +4678,9 @@ Note: 2025 data includes all four quarters (Q1-Q4).
               datalabels: {
                 color: '#495ED4',
                 font: { weight: 'bold', size: 12 },
-                align: function(context) {
-                  return context.dataIndex === 0 ? 'bottom' : 'top';
-                },
-                anchor: function(context) {
-                  return context.dataIndex === 0 ? 'center' : 'end';
-                },
-                offset: function(context) {
-                  return context.dataIndex === 0 ? 10 : 8;
-                },
+                align: 'top',
+                anchor: 'end',
+                offset: 6,
                 formatter: (value, context) => {
                   return context.datasetIndex === 0 && value ? value + ' days' : '';
                 }
@@ -4575,9 +4723,9 @@ Note: 2025 data includes all four quarters (Q1-Q4).
             clip: false,
             layout: {
               padding: {
-                top: 30,
-                right: 90,
-                left: 30,
+                top: 35,
+                right: 20,
+                left: 20,
                 bottom: 10
               }
             },
@@ -4586,27 +4734,9 @@ Note: 2025 data includes all four quarters (Q1-Q4).
               datalabels: {
                 color: '#dc3545',
                 font: { weight: 'bold', size: 14 },
-                align: function(context) {
-                  const idx = context.dataIndex;
-                  const last = context.dataset.data.length - 1;
-                  if (idx === 0) return 'right';
-                  if (idx === 1) return 'top';
-                  if (idx === last) return 'right';
-                  return 'right';
-                },
-                anchor: function(context) {
-                  const idx = context.dataIndex;
-                  if (idx === 0) return 'end';
-                  if (idx === 1) return 'end';
-                  return 'center';
-                },
-                offset: function(context) {
-                  const idx = context.dataIndex;
-                  const last = context.dataset.data.length - 1;
-                  if (idx === 0) return 18;
-                  if (idx === last) return 12;
-                  return 10;
-                },
+                align: 'top',
+                anchor: 'end',
+                offset: 6,
                 formatter: (value) => value !== null ? value + ' cases' : ''
               }
             },
