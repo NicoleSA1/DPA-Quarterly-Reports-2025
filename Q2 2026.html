@@ -263,8 +263,15 @@
       padding: 15px;
       background-color: #f8f9fa;
       border-bottom: 2px solid #dee2e6;
-      min-height: 50px;
+      /* Reserve the widget's full rendered height so its async load does not
+         reflow the page and throw off in-page "jump to section" links. */
+      min-height: 84px;
+      box-sizing: border-box;
     }
+    /* Prevent the Google Translate banner from pushing the whole page down
+       (which also shifts every anchor target). */
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0 !important; }
     
     /* Style the translate dropdown - More specific selectors */
     .goog-te-gadget {
@@ -4110,6 +4117,39 @@ Note: 2026 data includes Q1 and Q2 only. Subsequent quarters will be available i
         if (quarterlyStackedChart) { quarterlyStackedChart.resize(); }
       });
     });
+  </script>
+
+  <script>
+    // Keep "jump to section" (and any in-page anchor) accurate even if
+    // late-loading content -- web fonts or the Google Translate widget --
+    // reflows the page after the initial jump. Without this, the browser
+    // lands on the target, then content above it grows and pushes it down,
+    // leaving the reader parked just above the heading.
+    (function () {
+      var userInterrupt = false;
+      ['wheel', 'touchmove', 'keydown'].forEach(function (ev) {
+        window.addEventListener(ev, function () { userInterrupt = true; }, { passive: true });
+      });
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest && e.target.closest('a[href^="#"]');
+        if (!link) return;
+        var id = link.getAttribute('href').slice(1);
+        if (!id) return;
+        var target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        if (history.pushState) history.pushState(null, '', '#' + id);
+        userInterrupt = false;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Re-snap after the smooth scroll settles and any reflow completes,
+        // unless the reader has started scrolling on their own.
+        [450, 1000].forEach(function (delay) {
+          setTimeout(function () {
+            if (!userInterrupt) target.scrollIntoView({ behavior: 'instant', block: 'start' });
+          }, delay);
+        });
+      });
+    })();
   </script>
 
 </body>
