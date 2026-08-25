@@ -2088,9 +2088,10 @@
         height: auto !important;
     }
 
-    /* 4. Keep the quarter-over-quarter comparison cards intact so the
-          block moves to the next page instead of splitting across pages */
-    .qoq-grid, .quarterly-card {
+    /* 4. Keep the quarter-over-quarter heading, intro, and comparison cards
+          together so the whole block moves to the next page as a unit
+          instead of splitting or stranding the title on the prior page */
+    .qoq-block, .qoq-grid, .quarterly-card {
         page-break-inside: avoid !important;
         break-inside: avoid !important;
     }
@@ -2262,6 +2263,7 @@
       </section>
 
 <section class="section">
+        <div class="qoq-block">
         <h2 id="quarter-over-quarter">2026 Quarter-over-Quarter: SFPD</h2>
         <p>Because 2026 now has two quarters of data, the cards below compare the prior quarter (Q1 2026) with the current quarter (Q2 2026, highlighted).</p>
 
@@ -2282,6 +2284,7 @@
             <div class="metric-row"><span class="metric-label">Sustained Allegations</span><span class="metric-value notranslate">12</span></div>
             <div class="metric-row"><span class="metric-label">Avg Processing Days</span><span class="metric-value notranslate">73</span></div>
           </div>
+        </div>
         </div>
 
         <h3>2026 Year-to-Date Breakdown (SFPD)</h3>
