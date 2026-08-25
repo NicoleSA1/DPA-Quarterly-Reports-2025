@@ -2087,6 +2087,13 @@
     td {
         height: auto !important;
     }
+
+    /* 4. Keep the quarter-over-quarter comparison cards intact so the
+          block moves to the next page instead of splitting across pages */
+    .qoq-grid, .quarterly-card {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
 }
     /* ============================================
        COMPREHENSIVE PRINT STYLES
