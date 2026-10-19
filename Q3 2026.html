@@ -1826,6 +1826,10 @@
   margin: 0 auto;
   vertical-align: middle;
 }
+/* Keep values like "2.30%" from wrapping in the trend table */
+.data-table:has(.sparkline) td.notranslate {
+  white-space: nowrap;
+}
 /* Keep the trend line inside its own cell on narrow screens */
 .data-table td:has(> .sparkline) {
   overflow: hidden;
@@ -2119,7 +2123,7 @@
     }
     
     /* Highlight the Improper (Sustained) row */
-    .data-table.findings-table tbody tr:nth-child(2) {
+    .data-table.findings-table tbody tr:nth-child(1) {
       background-color: var(--sf-bg-light);
       border-left: 4px solid var(--sf-navy);
     }
@@ -3515,17 +3519,23 @@ Note: 2026 data includes Q1 through Q3 only. Q4 data will be available in the an
 
         <div class="highlight-box">
           <h3>Q3 2026 SB 1421 / SB 16 Activity</h3>
-          <p><mark class="tk">TK: confirm Q3 narrative.</mark> In Q3 2026, the DPA maintained its focus on implementing California's police transparency laws by reviewing and preparing qualifying records for public release while continuing to respond to routine <a href="https://sfdpa.nextrequest.com/" target="_blank" rel="noopener noreferrer">public records requests</a>. Staff assessed both newly eligible and archived cases involving officer-involved shootings, in-custody deaths, dishonesty, unlawful searches, biased conduct, and excessive force to determine whether disclosure requirements had been met. Records associated with sustained findings remain unavailable for release until the disciplinary process, including any appeals, has concluded. As transparency laws and disclosure obligations continue to develop, the DPA remains committed to providing the public with timely access to records required by law.</p>
+          <p>DPA continued its work to meet California's police transparency requirements and provide public access to qualifying records. Staff reviewed both recent and historical cases involving officer-involved shootings, in-custody deaths, dishonesty, unlawful searches, biased conduct, and excessive force to identify records eligible for disclosure. DPA also continued processing routine <a href="https://sfdpa.nextrequest.com/" target="_blank" rel="noopener noreferrer">public records requests</a>. Records involving sustained findings are released only after the disciplinary process, including any applicable appeals, is complete.</p>
+          <p>This quarter, DPA released <span class="notranslate">37</span> pages of records and <span class="notranslate">28</span> minutes of video evidence related to a biased conduct case. Public records staff also evaluated <span class="notranslate">373</span> cases for potential disclosure, while two interns conducted preliminary eligibility reviews of approximately <span class="notranslate">1,000</span> additional cases. DPA continues to refine its review and release processes as transparency requirements evolve, with the goal of providing timely public access to records subject to disclosure under California law.</p>
         </div>
 
-        <div class="stats-grid sb1421-callout" style="margin: 18px 0; grid-template-columns: repeat(2, 1fr);">
+        <div class="stats-grid sb1421-callout" style="margin: 18px 0; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
           <div class="stat-card">
-            <span class="stat-number"><mark class="tk">TK</mark></span>
+            <span class="stat-number notranslate">37</span>
             <div class="stat-label">Pages Disclosed</div>
             <div class="stat-context">Total pages released, Q3 2026</div>
           </div>
           <div class="stat-card">
-            <span class="stat-number"><mark class="tk">TK</mark></span>
+            <span class="stat-number notranslate">28</span>
+            <div class="stat-label">Minutes of Video</div>
+            <div class="stat-context">Video evidence released, Q3 2026</div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-number notranslate">373</span>
             <div class="stat-label">Cases Reviewed</div>
             <div class="stat-context">Reviewed for disclosure eligibility, Q3 2026</div>
           </div>
@@ -3543,20 +3553,16 @@ Note: 2026 data includes Q1 through Q3 only. Q4 data will be available in the an
             </thead>
             <tbody>
               <tr>
-                <th scope="row">Officer-Involved Shooting</th>
-                <td class="notranslate" style="text-align:right;"><mark class="tk">TK</mark></td>
-              </tr>
-              <tr>
-                <th scope="row">Great Bodily Injury</th>
-                <td class="notranslate" style="text-align:right;"><mark class="tk">TK</mark></td>
+                <th scope="row">Biased Conduct</th>
+                <td class="notranslate" style="text-align:right;">37</td>
               </tr>
               <tr style="background-color: #f8f9fa; font-weight: bold; border-top: 2px solid #333;">
                 <th scope="row"><strong>Total</strong></th>
-                <td class="notranslate" style="text-align:right;"><strong><mark class="tk">TK</mark></strong></td>
+                <td class="notranslate" style="text-align:right;"><strong>37</strong></td>
               </tr>
             </tbody>
           </table>
-          <p style="font-size: 0.8rem; color: #595959; margin-top: 4px;">In addition to the pages disclosed above, the Division reviewed <mark class="tk">TK</mark> cases for disclosure eligibility during Q3 2026.</p>
+          <p style="font-size: 0.8rem; color: #595959; margin-top: 4px;">In addition to the pages disclosed above, DPA also released <span class="notranslate">28</span> minutes of video evidence and evaluated <span class="notranslate">373</span> cases for disclosure eligibility during Q3 2026. Two interns conducted preliminary eligibility reviews of approximately <span class="notranslate">1,000</span> additional cases.</p>
         </div>
       </section>
 
@@ -3565,7 +3571,7 @@ Note: 2026 data includes Q1 through Q3 only. Q4 data will be available in the an
 
         <div class="highlight-box">
           <h3>Q3 2026 Audit Activity</h3>
-          <p><mark class="tk">TK: Q2 text below; update with Q3 audit status.</mark> In April 2026, the DPA initiated an audit of SFPD's compliance with requirements governing its use of automated license plate reader (<abbr title="Automated License Plate Reader">ALPR</abbr>) systems. The audit is in the planning phase, and the DPA will provide status updates during the DPA Director's Report portion of future Police Commission meetings.</p>
+          <p>DPA's audit of SFPD's use of automated license plate reader (<abbr title="Automated License Plate Reader">ALPR</abbr>) systems is in progress. DPA is reviewing SFPD's policies and practices to evaluate its compliance with requirements governing the use of these systems.</p>
         </div>
       </section>
 
